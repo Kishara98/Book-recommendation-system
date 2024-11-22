@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { hashPassword, verifyPassword, generateJwtToken } = require('../helper/helper');
 const { getMongoDB } = require('../../../mongoConnection');
-const { findByKeyAndModel, addRecordToDB } = require('../utils/document');
+const { findRecordsByFieldsAndModel, addRecordToDB } = require('../utils/document');
 
 /**
  * @function createUserAccount
@@ -21,9 +21,12 @@ async function createUserAccount(req, res) {
     const { userName, email, password } = req.body;
     await getMongoDB();
 
+    const keyAndValues = [
+      { field: 'email', value: email }
+    ];
     // Check if user already exists
-    const userRecord = await findByKeyAndModel(email, User, 'email');
-    if (userRecord) {
+    const userRecord = await findRecordsByFieldsAndModel(keyAndValues, User);
+    if (userRecord.length > 0) {
       return res.status(400).json({ message: 'Email already in use' });
     }
 
@@ -38,7 +41,14 @@ async function createUserAccount(req, res) {
     try {
       await addRecordToDB(User, userObject);
       console.info(`New user created successfully: ${email}`);
-      res.status(201).json({ message: 'User created successfully' });
+      res.status(201).json({ 
+        message: 'User created successfully', 
+        user: {
+          id: userObject._id,
+          userName,
+          email,
+        },
+      });
     } catch (error) {
       console.error(`Error while creating a new user: ${email}`, error);
       res.status(500).json({ message: 'Failed to create user' });
@@ -54,41 +64,45 @@ async function createUserAccount(req, res) {
 /**
  * Handles user login.
  *
- * @async
  * @function login
  * @param {Object} req
  * @param {Object} res - Express response object.
  * @returns {Object} JSON response containing the authentication token and user details.
  */
 async function login(req, res) {
-  const label = `<login ${JSON.stringify(req.body)}>`;
+  const label = `<login}>`;
   console.time(label);
   try {
     const { email, password } = req.body;
     const expiresIn = '1h';
     await getMongoDB();
     // Find the user by email
-    const userRecord = await findByKeyAndModel(email, User, 'email');
-    if (!userRecord) {
+    const keyAndValues = [
+      { field: 'email', value: email }
+    ];
+    const userRecord = await findRecordsByFieldsAndModel(keyAndValues, User);
+
+    if (userRecord.length === 0) {
+      console.log('User not found.');
       return res.status(404).json({ message: 'User not found.' });
     }
 
     // Compare password
-    const isMatch = await verifyPassword(password, userRecord.password)
+    const isMatch = await verifyPassword(password, userRecord[0].password)
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid credentials.' });
     }
 
     // Generate JWT token
-    const jwtToken = await generateJwtToken(userRecord._id, expiresIn)
+    const jwtToken = await generateJwtToken(userRecord[0]._id, expiresIn)
 
     res.status(200).json({
       message: 'Login successful!',
       authorization: jwtToken,
       user: {
-        id: userRecord._id,
-        userName: userRecord.userName,
-        email: userRecord.email,
+        id: userRecord[0]._id,
+        userName: userRecord[0].userName,
+        email: userRecord[0].email,
       },
     });
   } catch (error) {

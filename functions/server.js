@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const PORT  = process.env.PORT || 5000;
 const authController = require('./src/users/controllers/authController.js');
+const bookController = require('./src/books/controllers/bookController.js');
 
 // Initialize env variables
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 
 // API routes
 app.use('/api/auth', authController);
+app.use('/api/books', bookController);
 
 
 app.use((err, req, res, next) => {
