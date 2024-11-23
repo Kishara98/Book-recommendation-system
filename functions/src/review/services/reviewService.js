@@ -1,6 +1,6 @@
 const { getMongoDB } = require('../../../mongoConnection');
 const Book = require('../../books/models/Book.js');
-const Review = require('../../reviews/models/Review.js');
+const Review = require('../../review/models/Review.js');
 const {
   findRecordsByFieldsAndModel,
   addRecordToDB,
