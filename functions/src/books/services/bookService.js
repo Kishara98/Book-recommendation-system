@@ -1,11 +1,11 @@
-const { getMongoDB } = require("../../../mongoConnection");
+const { getMongoDB } = require('../../../mongoConnection');
 const {
   findRecordsByFieldsAndModel,
   addRecordToDB,
   updateRecordById,
   deleteRecordById,
-} = require("../../users/utils/document");
-const Book = require("../../books/models/Book.js");
+} = require('../../users/utils/document');
+const Book = require('../../books/models/Book.js');
 
 /**
  * Adds a new book for the logged-in user.
@@ -27,7 +27,7 @@ async function addBook(req, res) {
     if (!title || !author || !genre) {
       return res
         .status(400)
-        .json({ message: "Title, author, and genre are required." });
+        .json({ message: 'Title, author, and genre are required.' });
     }
 
     const bookObject = {
@@ -43,18 +43,18 @@ async function addBook(req, res) {
       console.info(`New book added successfully: ${title} by ${author}`);
       res
         .status(201)
-        .json({ message: "Book added successfully", book: bookObject });
+        .json({ message: 'Book added successfully', book: bookObject });
     } catch (error) {
       console.error(
         `Error while adding a new book: ${title} by ${author}`,
         error
       );
-      res.status(500).json({ message: "Failed to add the book" });
+      res.status(500).json({ message: 'Failed to add the book' });
     }
   } catch (error) {
     console.timeEnd(label);
     console.error(`${label} Error during adding a book:`, error.message);
-    res.status(500).json({ message: "Server error during adding a book." });
+    res.status(500).json({ message: 'Server error during adding a book.' });
   }
 }
 
@@ -89,8 +89,8 @@ async function getBooksByUser(req, res) {
     res.status(200).json(books);
   } catch (error) {
     console.timeEnd(label);
-    console.error("Error fetching books:", error.message);
-    res.status(500).json({ message: "Server error while fetching books." });
+    console.error('Error fetching books:', error.message);
+    res.status(500).json({ message: 'Server error while fetching books.' });
   }
 }
 /**
@@ -121,8 +121,8 @@ async function getBookDetailsById(req, res) {
     res.status(200).json(books); // Return the book if found
   } catch (error) {
     console.timeEnd(label);
-    console.error("Error fetching book:", error.message);
-    res.status(500).json({ message: "Server error while fetching book." });
+    console.error('Error fetching book:', error.message);
+    res.status(500).json({ message: 'Server error while fetching book.' });
   }
 }
 
@@ -192,7 +192,7 @@ async function deleteBookById(req, res) {
   } catch (error) {
     console.timeEnd(label);
     console.error('Error deleting book:', error.message);
-    res.status(500).json({ message: 'Server error while deleting book.' });
+    res.status(500).json({ message: 'Server error while deleting the book.' });
   }
 }
 
