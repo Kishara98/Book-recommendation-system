@@ -84,7 +84,7 @@ async function getBooksByUser(req, res) {
 
     const books = await findRecordsByFieldsAndModel(keyAndValues, Book);
     if (books.length === 0) {
-      return res.status(404).json({ message: 'Books not found or unauthorized.' });
+      return res.status(204).json({ message: 'Books not found or unauthorized.' });
     }
     res.status(200).json(books);
   } catch (error) {
@@ -94,7 +94,7 @@ async function getBooksByUser(req, res) {
   }
 }
 /**
- * Fetches all books added by the logged-in user.
+ * Fetches specifc book added by the logged-in user.
  * 
  * @function getBookDetailsById
  * @param {Object} req
@@ -116,7 +116,7 @@ async function getBookDetailsById(req, res) {
     const books = await findRecordsByFieldsAndModel(keyAndValues, Book);
 
     if (books.length === 0) {
-      return res.status(404).json({ message: 'Book not found or unauthorized.' });
+      return res.status(204).json({ message: 'Book not found or unauthorized.' });
     }
     res.status(200).json(books); // Return the book if found
   } catch (error) {
@@ -152,7 +152,7 @@ async function updateBookById(req, res) {
     // Find and update the book
     const updatedBook = await updateRecordById(Book, where, data, options);
     if (!updatedBook) {
-      return res.status(404).json({ message: 'Book not found or unauthorized.' });
+      return res.status(204).json({ message: 'Book not found or unauthorized.' });
     }
     res.status(200).json({ message: 'Book updated successfully!', book: updatedBook });
   } catch (error) {
@@ -185,7 +185,7 @@ async function deleteBookById(req, res) {
     // Find and delete the book
     const deletedBook = await deleteRecordById(Book, where);
     if (!deletedBook) {
-      return res.status(404).json({ message: 'Book not found or unauthorized.' });
+      return res.status(204).json({ message: 'Book not found or unauthorized.' });
     }
 
     res.status(200).json({ message: 'Book deleted successfully!', book: deletedBook});
