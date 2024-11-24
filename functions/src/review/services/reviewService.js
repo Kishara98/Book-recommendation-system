@@ -32,7 +32,7 @@ async function listReviews(req, res) {
 
     if (reviews.length === 0) {
       return res
-        .status(404)
+        .status(204)
         .json({ message: 'No reviews found for this book.' });
     } else {
       res.status(200).json(reviews);
@@ -64,7 +64,7 @@ async function addReview(req, res) {
         .json({ message: 'Book ID, review text, and rating are required.' });
     }
 
-    if (rating < 1 || rating > 5) {
+    if (rating <= 1 || rating >= 5) {
       return res
         .status(400)
         .json({ message: 'Rating must be between 1 and 5.' });
@@ -74,7 +74,7 @@ async function addReview(req, res) {
     // Retrieve the list of reviews for the specified book.
     const book = await findRecordsByFieldsAndModel(keyAndValues, Book);
     if (!book) {
-      return res.status(404).json({ message: 'Book not found.' });
+      return res.status(204).json({ message: 'Book not found.' });
     }
 
     const reviewObject = {
@@ -131,7 +131,7 @@ async function deleteReview(req, res) {
     const deletedReview = await deleteRecordById(Review, where);
     if (!deletedReview) {
       return res
-        .status(404)
+        .status(204)
         .json({ message: 'Review not found or unauthorized.' });
     }
 
