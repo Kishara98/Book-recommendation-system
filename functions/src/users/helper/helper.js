@@ -1,5 +1,5 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 /**
  * Hashes a given password using bcrypt with a generated salt.
@@ -21,7 +21,7 @@ async function hashPassword(password) {
   } catch (error) {
     console.timeEnd(label);
     console.error(`${label} Error during password hashing:`, error.message);
-    throw new Error("Failed to hash password.");
+    throw new Error('Failed to hash password.');
   }
 }
 

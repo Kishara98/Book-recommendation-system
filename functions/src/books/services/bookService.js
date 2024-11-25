@@ -72,20 +72,20 @@ async function getBooksByUser(req, res) {
   console.time(label);
   try {
     const { title, author, genre } = req.query;
-    await getMongoDB();
-    const keyAndValues = [
-      { field: 'userId', value: req.user.id },
-    ];
-    const params = { title, author, genre };
-    // Loop through each parameter and add to keyAndValues if it exists
-    Object.entries(params).forEach(([field, value]) => {
-      if (value) keyAndValues.push({ field, value });
-    });
 
-    const books = await findRecordsByFieldsAndModel(keyAndValues, Book);
+    await getMongoDB();
+
+    const searchCriteria = { userId: req.user.id };
+    if (title) searchCriteria.title = { $regex: title, $options: 'i' };
+    if (author) searchCriteria.author = { $regex: author, $options: 'i' };
+    if (genre) searchCriteria.genre = { $regex: genre, $options: 'i' };
+
+    const books = await Book.find(searchCriteria);
+
     if (books.length === 0) {
       return res.status(204).json({ message: 'Books not found or unauthorized.' });
     }
+
     res.status(200).json(books);
   } catch (error) {
     console.timeEnd(label);
@@ -93,6 +93,7 @@ async function getBooksByUser(req, res) {
     res.status(500).json({ message: 'Server error while fetching books.' });
   }
 }
+
 /**
  * Fetches specifc book added by the logged-in user.
  * 
