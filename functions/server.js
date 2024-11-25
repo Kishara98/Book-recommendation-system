@@ -33,6 +33,11 @@ app.use(cors({
 app.use(bodyParser.json());
 
 // API routes
+app.get('/test', (req, res) => {
+    return res.status(200).json({
+        msg: 'GET endpoint is working fine ..!'
+    });
+})
 app.use('/api/auth', authController);
 app.use('/api/books', bookController);
 app.use('/api/reviews', reviewController);
