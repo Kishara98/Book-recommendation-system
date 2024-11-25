@@ -87,3 +87,123 @@ npm start
 ## Instructions for Linking Discord Accounts and Using the Discord Bot
 (Details will be added after the Discord bot integration is implemented.)
 
+
+## API Documentation
+
+### User Routes
+
+```
+  POST /api/auth/signup
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `userName` | `string` | **Required** |
+| `email` | `string` | **Required**|
+| `password` | `string` | **Required** |
+
+
+
+
+```
+  POST /api/auth/login
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `email` | `string` | **Required** |
+| `password` | `string` | **Required** |
+
+
+
+```
+  POST /api/auth/logout
+```
+
+----------------- 
+### Book Routes
+
+```
+  POST /api/books
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `title` | `string` | **Required** |
+| `author` | `string` | **Required**|
+| `genre` | `string` | **Required** |
+
+
+
+
+```
+  PUT /api/books/:id
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `title` | `string` | Optional (At least one parameter required) |
+| `author` | `string` | Optional |
+| `genre` | `string` | Optional  |
+
+```
+  DELETE /api/books/:id
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `id` | `string` | Required as path param |
+
+```
+  GET /api/books/:id
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `id` | `string` | Required as path param |
+
+
+
+```
+  GET /api/books
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `title` | `string` | Optional (Filter by book title) |
+| `author` | `string` | Optional (Filter by book author) |
+| `genre` | `string` | Optional (Filter by book genre)  |
+
+
+----------------- 
+### Review Routes
+
+```
+  POST /api/reviews
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `bookId` | `string` | Required |
+| `review` | `string` | Required |
+| `rating` | `string` | Required(1-5)  |
+
+
+```
+  GET /api/reviews/:bookId
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `bookId` | `string` | Required as path param |
+
+
+```
+  DELETE /api/reviews/:id
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `bookId` | `string` | Required as path param |
+
+
