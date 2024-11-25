@@ -13,9 +13,7 @@ dotenv.config();
 const app = express();
 
 // Configure CORS
-const allowedOrigins = process.env.ALLOWED_ORIGINS 
-? process.env.ALLOWED_ORIGINS.split(',') 
-: ['http://localhost:3000'];
+const allowedOrigins = ['https://book-haven-lk.vercel.app'];
 
 console.log('allowedOrigins>>', allowedOrigins)
 app.use(cors({
