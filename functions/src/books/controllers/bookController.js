@@ -7,7 +7,7 @@ const {
     updateBookById, 
     deleteBookById 
 } = require('../services/bookService');
-const authMiddleware = require('../../users/middlewares/authMiddleware'); // For securing routes
+const authMiddleware = require('../../users/middlewares/authMiddleware'); 
 
 router.get('/', authMiddleware, getBooksByUser);       // Get all books
 router.post('/', authMiddleware, addBook);       // Add a new book
