@@ -28,7 +28,7 @@ The Book Recommendation System is a web application that allows users to track t
 
 ### Server and Deployment
 
-- Cloud Platform: DigitalOcean & Netlify
+- Cloud Platform: DigitalOcean & Vercel
 - Database Hosting: MongoDB Atlas
 
 
@@ -82,7 +82,40 @@ npm start
 ```
 
 ## Deployment Details
-(Deployment details will be added after the project is deployed.)
+### Frontend Deployment (Vercel)
+ **Hosting Platform: Vercel**
+#### Steps to Deploy:
+1. Push your React project to a Git repository (GitHub, GitLab, etc.).
+2. Connect the repository to Vercel via their dashboard.
+3. Configure the build settings:
+ - Framework: React.js
+ - Build Command: ```npm run build```
+ - Output Directory: ```build```
+4. Click Deploy to publish the frontend.
+- Deployment URL: https://book-haven-lk.vercel.app/login
+
+### Backend Deployment (DigitalOcean)
+**Hosting Platform: DigitalOcean**
+
+#### Steps to Deploy:
+1. Set up a Droplet or App Platform on DigitalOcean.
+2. Configure the environment:
+- Install Node.js, npm, and MongoDB drivers on the Droplet.
+- Clone the backend repository to the server.
+- Install dependencies using: ```npm install```
+- Configure environment variables by creating a .env file with:
+
+``` 
+PORT=5000 
+MONGO_URI=<Your MongoDB URI> 
+JWT_SECRET=<Your JWT Secret> 
+```
+
+- Start the application using a process manager like PM2 or directly with Node.js:
+
+    ```npm start```
+
+
 
 ## Instructions for Linking Discord Accounts and Using the Discord Bot
 (Details will be added after the Discord bot integration is implemented.)
