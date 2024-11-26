@@ -118,14 +118,16 @@ JWT_SECRET=<Your JWT Secret>
 
 
 ## Instructions for Linking Discord Accounts and Using the Discord Bot
+Repository: https://github.com/Kishara98/Discord-Bot-Book-recommendation-system.git
+
 This Discord bot integrates with the Book Recommendation System to manage books and reviews directly from Discord. Below are the available commands and how to use them.
 
 ## Commands Overview
-### Book Management
+### Book Management - (remove <>)
 #### Add Book
 
-- Command: ```!addbook [title] [author] [genre]```
-- Example: ```!addbook Gatsby Fitzgerald Fiction```
+- Command: ```!addbook title="<title>" author="<author>" genre="<genre>"```
+- Example: ```!addbook title="Gatsby" author="Fitzgerald" genre="Fiction"```
 - Description: Adds a book to your library.
 
 #### List Books
@@ -136,31 +138,31 @@ This Discord bot integrates with the Book Recommendation System to manage books 
 
 #### Edit Book
 
-- Command: ```!editbook [book ID] [new title] [new author] [new genre]```
-- Example: ```!editbook 123 youTitle GeorgeOrwell Dystopian```
+- Command: ```!editbook id="<id>" title="<title>" author="<author>" genre="<genre>"```
+- Example: ```!editbook id="123" title="new title" author="GeorgeOrwell Dystopian"```
 - Description: Updates the details of an existing book in your library.
 
 #### Delete Book
 
-- Command: ```!deletebook [book ID]```
-- Example: ```!deletebook 123```
+- Command: ```!deletebook id="<id>"```
+- Example: ```!deletebook id="123"```
 - Description: Removes a book from your library.
 
-### Review Management
+### Review Management - (remove <>)
 #### Add Review
 
-- Command: ```!addreview [book ID] [review] [rating]```
-- Example: ```!addreview 123 Excellent 5```
+- Command: ```!addreview id="<id>" review="<review>" rating="<rating>```
+- Example: ```!addreview id="123" review="Excellent" rating="5"```
 - Description: Adds a review to a book.
 #### List Reviews
 
-- Command:  ```!listreviews [book ID]```
-- Example: ```!listreviews 123```
+- Command:  ```!listreviews =id="<id>"```
+- Example: ```!listreviews id="123456"```
 - Description: Displays all reviews for a specific book.
 #### Delete Review
 
-- Command: ```!deletereview [review ID]```
-- Example: ```!deletereview 456```
+- Command: ```!deletereview id="<id>"```
+- Example: ```!deletereview id="123456"```
 - Description: Deletes a specific review for a book.
 
 Invite the bot to your Discord server:
