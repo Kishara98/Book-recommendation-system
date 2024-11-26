@@ -74,7 +74,7 @@ async function login(req, res) {
   console.time(label);
   try {
     const { email, password } = req.body;
-    const expiresIn = '1h';
+    const expiresIn = '5h';
     await getMongoDB();
     // Find the user by email
     const keyAndValues = [

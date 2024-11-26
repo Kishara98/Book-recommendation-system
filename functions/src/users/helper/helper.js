@@ -53,7 +53,7 @@ async function verifyPassword(inputPassword, actualPassword) {
  * The JWT is signed using a secret key stored in the environment variables.
  * 
  * @param {Object} userRecord 
- * @param {string} expiresIn - The duration for which the JWT should remain valid (e.g., '1h', '24h').
+ * @param {string} expiresIn - The duration for which the JWT should remain valid (e.g., '5h', '24h').
  * @returns {Promise<string>} 
  */
 async function generateJwtToken(userRecord, expiresIn) {

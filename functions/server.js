@@ -13,7 +13,12 @@ dotenv.config();
 const app = express();
 
 // Configure CORS
-const allowedOrigins = ['https://book-haven-lk.vercel.app'];
+const allowedOrigins = [
+  "https://book-haven-lk.vercel.app",
+  "http://localhost:5001",
+  "http://localhost:5000",
+  "https://book-recommendation-bot-qnrvq.ondigitalocean.app"
+];
 
 console.log('allowedOrigins>>', allowedOrigins)
 app.use(cors({

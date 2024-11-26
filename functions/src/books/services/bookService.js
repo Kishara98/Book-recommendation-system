@@ -176,7 +176,7 @@ async function updateBookById(req, res) {
  * @returns {Promise<void>}
  */
 async function deleteBookById(req, res) {
-  const label = `<updateBookById ${JSON.stringify(req.body)} ${req.params}> `;
+  const label = `<deleteBookById ${JSON.stringify(req.body)} ${req.params}> `;
   console.time(label);
   try {
     const { id } = req.params;
