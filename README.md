@@ -12,7 +12,7 @@ The Book Recommendation System is a web application that allows users to track t
 - Personal Book Library Management (Add, View, Edit, Delete books)
 - Book Reviews and Ratings
 - Responsive and mobile-friendly design
-- Integration with a Discord bot (Future enhancement)
+- Integration with a Discord bot 
 
 ## Technologies Used
 ### Backend
@@ -118,7 +118,56 @@ JWT_SECRET=<Your JWT Secret>
 
 
 ## Instructions for Linking Discord Accounts and Using the Discord Bot
-(Details will be added after the Discord bot integration is implemented.)
+This Discord bot integrates with the Book Recommendation System to manage books and reviews directly from Discord. Below are the available commands and how to use them.
+
+## Commands Overview
+### Book Management
+#### Add Book
+
+- Command: ```!addbook [title] [author] [genre]```
+- Example: ```!addbook Gatsby Fitzgerald Fiction```
+- Description: Adds a book to your library.
+
+#### List Books
+
+- Command: ```!listbooks```
+- Example: ```!listbooks```
+- Description: Displays a list of all books in your library.
+
+#### Edit Book
+
+- Command: ```!editbook [book ID] [new title] [new author] [new genre]```
+- Example: ```!editbook 123 youTitle GeorgeOrwell Dystopian```
+- Description: Updates the details of an existing book in your library.
+
+#### Delete Book
+
+- Command: ```!deletebook [book ID]```
+- Example: ```!deletebook 123```
+- Description: Removes a book from your library.
+
+### Review Management
+#### Add Review
+
+- Command: ```!addreview [book ID] [review] [rating]```
+- Example: ```!addreview 123 Excellent 5```
+- Description: Adds a review to a book.
+#### List Reviews
+
+- Command:  ```!listreviews [book ID]```
+- Example: ```!listreviews 123```
+- Description: Displays all reviews for a specific book.
+#### Delete Review
+
+- Command: ```!deletereview [review ID]```
+- Example: ```!deletereview 456```
+- Description: Deletes a specific review for a book.
+
+Invite the bot to your Discord server:
+
+Invite URL: **request this via email**
+
+
 
 
 ## API Documentation
